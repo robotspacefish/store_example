@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require_relative '../config/environment'
+
+file = './assets/products.json'
+# import data
+product_data = JSON.parse(File.read(file))
+# TODO protect against missing data (check file exists)
+
+cli = CLI.run(product_data, ARGV)
