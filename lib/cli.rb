@@ -1,13 +1,12 @@
 class CLI
-  attr_accessor :type, :options, :product_data
-  def initialize(args)
+  attr_accessor :type, :options
+  def initialize(args, options = [])
     # TODO handle user not entering any args
     # args is an array of arguments the
     # user entered in the command line, or []
     @type = args.first
-
+    @options = options
     self.set_options(args) if args.length > 1
-
   end
 
   def set_options(options)
@@ -39,12 +38,15 @@ class CLI
 
   def find_by_options(products)
     # then narrow down further by options,
-    # if @options != []
-    products.filter do |prod|
-      @options.all? do |option|
-        prod.options.value?(option)
+    if @options != []
+      products.filter do |prod|
+        @options.all? do |option|
+          prod.options.value?(option)
+        end
       end
     end
   end
 
 end
+
+
