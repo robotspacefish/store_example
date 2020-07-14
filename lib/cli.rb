@@ -1,17 +1,16 @@
 class CLI
   attr_accessor :type, :options
-  def initialize(args, options = [])
+  def initialize(args)
     # TODO handle user not entering any args
     # args is an array of arguments the
     # user entered in the command line, or []
     @type = args.first
-    @options = options
-    self.set_options(args) if args.length > 1
+    @options = args.length > 1 ? self.set_options(args) : []
   end
 
   def set_options(options)
     # store remaining style options
-    @options = options.slice(1, options.length)
+    options.slice(1, options.length)
   end
 
   def self.run(product_data, args)
