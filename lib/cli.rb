@@ -18,6 +18,7 @@ class CLI
     self.create_products(product_data)
 
     products = cli.find_by_options(cli.find_by_type)
+
     pp products
   end
 
@@ -43,6 +44,8 @@ class CLI
           prod.options.value?(option)
         end
       end
+    else
+      products
     end
   end
 
